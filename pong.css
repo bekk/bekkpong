@@ -28,6 +28,8 @@ body {
 
 .logoTextHolder {
     line-height: 1.15;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .logoTextHolder:after {
