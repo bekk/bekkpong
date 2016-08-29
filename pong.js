@@ -54,11 +54,17 @@ Pong = {
   ],
 
   //-----------------------------------------------------------------------------
-  checkButtonPressed: function () {
+  checkControllerButtonPressed: function () {
     // Player one controller
     var gp1 = navigator.getGamepads()[0];
-    //Player two controller
+    // Player two controller
     var gp2 = navigator.getGamepads()[1];
+
+    // If player 2 is not connected, we set him to player 1
+    // THIS SHOULD NEVER HAPPEN!
+    if (!gp2) {
+      gp2 = gp1;
+    }
 
     // Check if player start the game
     if(gp1.buttons[9].pressed || gp2.buttons[9].pressed) {
@@ -175,7 +181,9 @@ Pong = {
   },
 
   update: function(dt) {
-    this.checkButtonPressed();
+    if (navigator.getGamepads()[0]) {
+      this.checkControllerButtonPressed();
+    }
     this.leftPaddle.update(dt, this.ball);
     this.rightPaddle.update(dt, this.ball);
     if (this.playing) {
