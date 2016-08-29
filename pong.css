@@ -10,7 +10,7 @@ html {
     font-family: 'Fedra';
 }
 
-body { background-color: black; color: #FFF; font-size: 12pt; padding: 1em; }
+body { background-color: #1A1A1A; color: #FFFFFF; font-size: 12pt; padding: 2em;  }
 
 @media screen and (min-width: 0px) {
   #game    { display: block; width: 800px; height: 600px; margin: 0 auto; }
