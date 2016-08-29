@@ -54,19 +54,7 @@ Pong = {
   ],
 
   //-----------------------------------------------------------------------------
-  checkControllerButtonPressed: function () {
-    // Player one controller
-    var gp1 = navigator.getGamepads()[0];
-    // Player two controller
-    var gp2 = navigator.getGamepads()[1];
-
-    // If player 2 is not connected, we set him to player 1
-    // THIS SHOULD NEVER HAPPEN!
-    if (!gp2) {
-      gp2 = gp1;
-    }
-
-    // Check if player start the game
+  checkControllerStartGame: function (gp1, gp2) {
     if(gp1.buttons[9].pressed || gp2.buttons[9].pressed) {
       this.startDoublePlayer();
       this.Defaults.useControllers = true;
@@ -74,46 +62,46 @@ Pong = {
       this.startSinglePlayer();
       this.Defaults.useControllers = true;
     }
+  },
 
+  checkControllerMovement: function (gp, paddle) {
+    if(this.Defaults.useControllers && !paddle.auto) {
+      switch (gp.axes[1]) {
+        case 1:
+          // Move down
+          paddle.stopMovingUp();
+          paddle.moveDown();
+          break;
+        case -1:
+          // Move up
+          paddle.stopMovingDown();
+          paddle.moveUp();
+          break;
+        default:
+          // Stop moving
+          paddle.stopMovingDown();
+          paddle.stopMovingUp();
+      }
+    }
+  },
+
+  checkControllerButtonPressed: function () {
+    // Player one controller
+    var gp1 = navigator.getGamepads()[0];
+    // Player two controller
+    var gp2 = navigator.getGamepads()[1];
+
+    // If player 2 is not connected, and we start two player with controllers
+    // we set him to player 1. THIS SHOULD NEVER HAPPEN!
+    if (!gp2) {
+      gp2 = gp1;
+    }
+
+    this.checkControllerStartGame(gp1, gp2);
     // Check movement for player one
-    if(this.Defaults.useControllers && !this.leftPaddle.auto) {
-      switch (gp1.axes[1]) {
-        case 1:
-          // Move down
-          this.leftPaddle.stopMovingUp();
-          this.leftPaddle.moveDown();
-          break;
-        case -1:
-          // Move up
-          this.leftPaddle.stopMovingDown();
-          this.leftPaddle.moveUp();
-          break;
-        default:
-          // Stop moving
-          this.leftPaddle.stopMovingDown();
-          this.leftPaddle.stopMovingUp();
-      }
-    }
-
+    this.checkControllerMovement(gp1, this.leftPaddle);
     // Check movement for player two
-    if(this.Defaults.useControllers && !this.rightPaddle.auto) {
-      switch (gp2.axes[1]) {
-        case 1:
-          // Move down
-          this.rightPaddle.stopMovingUp();
-          this.rightPaddle.moveDown();
-          break;
-        case -1:
-          // Move up
-          this.rightPaddle.stopMovingDown();
-          this.rightPaddle.moveUp();
-          break;
-        default:
-          // Stop moving
-          this.rightPaddle.stopMovingDown();
-          this.rightPaddle.stopMovingUp();
-      }
-    }
+    this.checkControllerMovement(gp2, this.rightPaddle);
   },
 
   initialize: function(runner, cfg) {
