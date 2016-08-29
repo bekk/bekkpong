@@ -18,17 +18,17 @@ Pong = {
   },
 
   Colors: {
-    walls:           'white',
-    ball:            'white',
-    score:           'white',
+    walls:           '#887E6F',
+    playerOne:       '#FD5158',
+    playerTwo:       '#36BDB2',
+    ball:            '#FFFFFF',
+    score:           '#FFFFFF',
     footprint:       '#333',
     predictionGuess: 'yellow',
     predictionExact: 'red'
   },
 
   Images: [
-    "images/press1.png",
-    "images/press2.png",
     "images/winner.png"
   ],
 
@@ -182,11 +182,7 @@ Pong = {
   Menu: {
 
     initialize: function(pong) {
-      var press1 = pong.images["images/press1.png"];
-      var press2 = pong.images["images/press2.png"];
       var winner = pong.images["images/winner.png"];
-      this.press1  = { image: press1, x: 10,                                                 y: pong.cfg.wallWidth     };
-      this.press2  = { image: press2, x: (pong.width - press2.width - 10),                   y: pong.cfg.wallWidth     };
       this.winner1 = { image: winner, x: (pong.width/2) - winner.width - pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
       this.winner2 = { image: winner, x: (pong.width/2)                + pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
     },
@@ -196,8 +192,6 @@ Pong = {
     },
 
     draw: function(ctx) {
-      ctx.drawImage(this.press1.image, this.press1.x, this.press1.y);
-      ctx.drawImage(this.press2.image, this.press2.x, this.press2.y);
       if (this.winner == 0)
         ctx.drawImage(this.winner1.image, this.winner1.x, this.winner1.y);
       else if (this.winner == 1)
@@ -439,7 +433,11 @@ Pong = {
     },
 
     draw: function(ctx) {
-      ctx.fillStyle = Pong.Colors.walls;
+      if(this.x === 0) {
+        ctx.fillStyle = Pong.Colors.playerOne;
+      } else {
+        ctx.fillStyle = Pong.Colors.playerTwo;
+      }
       ctx.fillRect(this.x, this.y, this.width, this.height);
       if (this.prediction && this.pong.cfg.predictions) {
         ctx.strokeStyle = Pong.Colors.predictionExact;
