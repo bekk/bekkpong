@@ -48,7 +48,7 @@ body {
     width: 800px;
     z-index: 100;
     position: absolute;
-    top:110px;
+    top:130px;
     left: calc((100% - 800px) / 2);
 }
 
