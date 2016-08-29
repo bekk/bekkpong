@@ -95,7 +95,6 @@ Pong = {
     if (this.playing) {
       if (!ask || this.runner.confirm('Abandon game in progress ?')) {
         document.getElementById("splash-end").classList.remove("hidden");
-        console.log(this);
         var diff = this.scores[this.menu.winner] - this.scores[1 - this.menu.winner];
         document.getElementById("end-info").innerHTML = "Player " + (this.menu.winner +1) + " wins the game with " + diff;
         document.getElementById("end-info").innerHTML += diff > 1? " points" : " point";
