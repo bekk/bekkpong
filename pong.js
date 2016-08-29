@@ -1,7 +1,6 @@
 //=============================================================================
 // PONG
 //=============================================================================
-
 Pong = {
 
   Defaults: {
@@ -14,6 +13,7 @@ Pong = {
     ballSpeed:    4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
     ballAccel:    8,     // ... but accelerate as time passes
     ballRadius:   5,
+    endGameScore: 5,
     sound:        true
   },
 
@@ -106,7 +106,7 @@ Pong = {
   goal: function(playerNo) {
     this.sounds.goal();
     this.scores[playerNo] += 1;
-    if (this.scores[playerNo] == 9) {
+    if (this.scores[playerNo] == this.Defaults.endGameScore) {
       this.menu.declareWinner(playerNo);
       this.stop();
     }
