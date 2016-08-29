@@ -13,7 +13,7 @@ Pong = {
     ballSpeed:      4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
     ballAccel:      8,     // ... but accelerate as time passes
     ballRadius:     5,
-    endGameScore:   1,
+    endGameScore:   2,
     useControllers: false,
     sound:          true
   },
@@ -61,6 +61,12 @@ Pong = {
     } else if(gp1.buttons[8].pressed) {
       this.startSinglePlayer();
       this.Defaults.useControllers = true;
+    } else if(gp1.buttons[1].pressed) {
+      this.startDemo();
+    } else if(gp1.buttons[2].pressed) {
+      if (this.isDemo) {
+        this.stop();
+      }
     }
   },
 
@@ -119,19 +125,22 @@ Pong = {
       this.rightPaddle = Object.construct(Pong.Paddle, this, true);
       this.ball        = Object.construct(Pong.Ball,   this);
       this.sounds      = Object.construct(Pong.Sounds, this);
+      this.demo        = false;
       this.runner.start();
     }.bind(this));
   },
 
-  startDemo:         function() { this.start(0); },
-  startSinglePlayer: function() { this.start(1); },
-  startDoublePlayer: function() { this.start(2); },
+  startDemo:         function() { this.start(0, true);},
+  startSinglePlayer: function() { this.start(1, false);},
+  startDoublePlayer: function() { this.start(2, false);},
 
-  start: function(numPlayers) {
+  start: function(numPlayers, isDemo) {
     if (!this.playing) {
       //remove splash screen:
       document.getElementById("splash-begin").classList = "splash hidden";
       document.getElementById("splash-end").classList = "splash hidden";
+
+      this.isDemo = isDemo;
       this.scores = [0, 0];
       this.playing = true;
       this.leftPaddle.setAuto(numPlayers < 1, this.level(0));
@@ -141,18 +150,21 @@ Pong = {
     }
   },
 
-  stop: function(ask) {
+  stop: function() {
     if (this.playing) {
-      if (!ask || this.runner.confirm('Abandon game in progress ?')) {
+      if (this.isDemo) {
+        document.getElementById("splash-begin").classList = "splash";
+      } else {
         document.getElementById("splash-end").classList.remove("hidden");
         var diff = this.scores[this.menu.winner] - this.scores[1 - this.menu.winner];
         document.getElementById("end-info").innerHTML = "Player " + (this.menu.winner +1) + " wins the game with " + diff;
         document.getElementById("end-info").innerHTML += diff > 1? " points" : " point";
-        this.playing = false;
-        this.leftPaddle.setAuto(false);
-        this.rightPaddle.setAuto(false);
-        this.runner.showCursor();
       }
+      
+      this.playing = false;
+      this.leftPaddle.setAuto(false);
+      this.rightPaddle.setAuto(false);
+      this.runner.showCursor();
     }
   },
 
@@ -224,7 +236,7 @@ Pong = {
         this.startDoublePlayer();
         break;
       case Game.KEY.ESC:
-        this.stop(true);
+        this.stop();
         break;
       case Game.KEY.Q:
         if (!this.leftPaddle.auto)
