@@ -163,6 +163,7 @@ Pong = {
     this.sounds.goal();
     this.scores[playerNo] += 1;
     if (this.scores[playerNo] == this.Defaults.endGameScore) {
+      this.sounds.applause();
       this.menu.declareWinner(playerNo);
       this.stop();
     }
@@ -295,7 +296,8 @@ Pong = {
           ping: Game.createAudio("sounds/ping.wav"),
           pong: Game.createAudio("sounds/pong.wav"),
           wall: Game.createAudio("sounds/wall.wav"),
-          goal: Game.createAudio("sounds/goal.wav")
+          goal: Game.createAudio("sounds/applause.wav"),
+          applause: Game.createAudio("sounds/cheering.wav")
         };
       }
     },
@@ -307,8 +309,9 @@ Pong = {
 
     ping: function() { this.play('ping'); },
     pong: function() { this.play('pong'); },
-    wall: function() { /*this.play('wall');*/ },
-    goal: function() { /*this.play('goal');*/ }
+    wall: function() { this.play('wall'); },
+    goal: function() { this.play('goal'); },
+    applause: function() { this.play('applause'); },
 
   },
 
