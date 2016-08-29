@@ -79,6 +79,9 @@ Pong = {
 
   start: function(numPlayers) {
     if (!this.playing) {
+      //remove splash screen:
+      document.getElementById("splash-begin").classList = "splash hidden";
+      document.getElementById("splash-end").classList = "splash hidden";
       this.scores = [0, 0];
       this.playing = true;
       this.leftPaddle.setAuto(numPlayers < 1, this.level(0));
@@ -91,6 +94,11 @@ Pong = {
   stop: function(ask) {
     if (this.playing) {
       if (!ask || this.runner.confirm('Abandon game in progress ?')) {
+        document.getElementById("splash-end").classList.remove("hidden");
+        console.log(this);
+        var diff = this.scores[this.menu.winner] - this.scores[1 - this.menu.winner];
+        document.getElementById("end-info").innerHTML = "Player " + (this.menu.winner +1) + " wins the game with " + diff;
+        document.getElementById("end-info").innerHTML += diff > 1? " points" : " point";
         this.playing = false;
         this.leftPaddle.setAuto(false);
         this.rightPaddle.setAuto(false);
