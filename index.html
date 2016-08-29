@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BEKK Pong!</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="pong.css" media="screen, print" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div style="text-align: center"><img src="bekk_logo.png" width="300">
+  <h2>Pong</h2>
+  </div>
+
+  </div>
+
+  <canvas id="game">
+  </canvas>
+
+  <script src="game.js" type="text/javascript"></script>
+  <script src="pong.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  Game.ready(function() {
+
+    var size        = document.getElementById('size');
+    var sound       = document.getElementById('sound');
+    var stats       = document.getElementById('stats');
+    var footprints  = document.getElementById('footprints');
+    var predictions = document.getElementById('predictions');
+
+    var pong = Game.start('game', Pong, {
+      sound:       true,
+      stats:       false,
+      footprints:  false,
+      predictions: false
+    });
+
+    Game.addEvent(sound,       'change', function() { pong.enableSound(sound.checked);           });
+    Game.addEvent(stats,       'change', function() { pong.showStats(stats.checked);             });
+    Game.addEvent(footprints,  'change', function() { pong.showFootprints(footprints.checked);   });
+    Game.addEvent(predictions, 'change', function() { pong.showPredictions(predictions.checked); });
+
+  });
+  </script>
+
+</body>
+</html>
