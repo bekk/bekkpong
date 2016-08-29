@@ -4,17 +4,18 @@
 Pong = {
 
   Defaults: {
-    width:        640,   // logical canvas width (browser will scale to physical canvas size - which is controlled by @media css queries)
-    height:       480,   // logical canvas height (ditto)
-    wallWidth:    12,
-    paddleWidth:  12,
-    paddleHeight: 60,
-    paddleSpeed:  2,     // should be able to cross court vertically   in 2 seconds
-    ballSpeed:    4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
-    ballAccel:    8,     // ... but accelerate as time passes
-    ballRadius:   5,
-    endGameScore: 5,
-    sound:        true
+    width:          640,   // logical canvas width (browser will scale to physical canvas size - which is controlled by @media css queries)
+    height:         480,   // logical canvas height (ditto)
+    wallWidth:      12,
+    paddleWidth:    12,
+    paddleHeight:   60,
+    paddleSpeed:    2,     // should be able to cross court vertically   in 2 seconds
+    ballSpeed:      4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
+    ballAccel:      8,     // ... but accelerate as time passes
+    ballRadius:     5,
+    endGameScore:   1,
+    useControllers: false,
+    sound:          true
   },
 
   Colors: {
@@ -53,6 +54,61 @@ Pong = {
   ],
 
   //-----------------------------------------------------------------------------
+  checkButtonPressed: function () {
+    // Player one controller
+    var gp1 = navigator.getGamepads()[0];
+    //Player two controller
+    var gp2 = navigator.getGamepads()[1];
+
+    // Check if player start the game
+    if(gp1.buttons[9].pressed || gp2.buttons[9].pressed) {
+      this.startDoublePlayer();
+      this.Defaults.useControllers = true;
+    } else if(gp1.buttons[8].pressed) {
+      this.startSinglePlayer();
+      this.Defaults.useControllers = true;
+    }
+
+    // Check movement for player one
+    if(this.Defaults.useControllers && !this.leftPaddle.auto) {
+      switch (gp1.axes[1]) {
+        case 1:
+          // Move down
+          this.leftPaddle.stopMovingUp();
+          this.leftPaddle.moveDown();
+          break;
+        case -1:
+          // Move up
+          this.leftPaddle.stopMovingDown();
+          this.leftPaddle.moveUp();
+          break;
+        default:
+          // Stop moving
+          this.leftPaddle.stopMovingDown();
+          this.leftPaddle.stopMovingUp();
+      }
+    }
+
+    // Check movement for player two
+    if(this.Defaults.useControllers && !this.rightPaddle.auto) {
+      switch (gp2.axes[1]) {
+        case 1:
+          // Move down
+          this.rightPaddle.stopMovingUp();
+          this.rightPaddle.moveDown();
+          break;
+        case -1:
+          // Move up
+          this.rightPaddle.stopMovingDown();
+          this.rightPaddle.moveUp();
+          break;
+        default:
+          // Stop moving
+          this.rightPaddle.stopMovingDown();
+          this.rightPaddle.stopMovingUp();
+      }
+    }
+  },
 
   initialize: function(runner, cfg) {
     Game.loadImages(Pong.Images, function(images) {
@@ -118,6 +174,7 @@ Pong = {
   },
 
   update: function(dt) {
+    this.checkButtonPressed();
     this.leftPaddle.update(dt, this.ball);
     this.rightPaddle.update(dt, this.ball);
     if (this.playing) {
@@ -150,14 +207,38 @@ Pong = {
 
   onkeydown: function(keyCode) {
     switch(keyCode) {
-      case Game.KEY.ZERO: this.startDemo();            break;
-      case Game.KEY.ONE:  this.startSinglePlayer();    break;
-      case Game.KEY.TWO:  this.startDoublePlayer();    break;
-      case Game.KEY.ESC:  this.stop(true);             break;
-      case Game.KEY.Q:    if (!this.leftPaddle.auto)  this.leftPaddle.moveUp();    break;
-      case Game.KEY.A:    if (!this.leftPaddle.auto)  this.leftPaddle.moveDown();  break;
-      case Game.KEY.P:    if (!this.rightPaddle.auto) this.rightPaddle.moveUp();   break;
-      case Game.KEY.L:    if (!this.rightPaddle.auto) this.rightPaddle.moveDown(); break;
+      case Game.KEY.ZERO:
+        this.Defaults.useControllers = false;
+        this.startDemo();
+        break;
+      case Game.KEY.ONE:
+        this.Defaults.useControllers = false;
+        this.startSinglePlayer();
+        break;
+      case Game.KEY.TWO:
+        this.Defaults.useControllers = false;
+        this.startDoublePlayer();
+        break;
+      case Game.KEY.ESC:
+        this.stop(true);
+        break;
+      case Game.KEY.Q:
+        if (!this.leftPaddle.auto)
+          this.leftPaddle.moveUp();
+        break;
+      case Game.KEY.A:
+        if (!this.leftPaddle.auto)
+          this.leftPaddle.moveDown();
+        break;
+      case Game.KEY.P:
+        if (!this.rightPaddle.auto)
+          this.rightPaddle.moveUp();
+        break;
+      case Game.KEY.L:
+        if (!this.rightPaddle.auto)
+          this.rightPaddle.moveDown();
+        break;
+      default: console.log(keyCode);
     }
   },
 
