@@ -1,15 +1,21 @@
-Canvas Pong
-===========
+# BEKKPong
 
-This is a small experiment to implement a version of the classic Pong game in an HTML <canvas>.
+BEKKPong er et spill som kan brukes til rekrutteringsprosjekter og lignende. 
 
- * You can find the [game here](http://codeincomplete.com/posts/2011/5/14/javascript_pong/demo.html)
- * You can find out [how it works](http://codeincomplete.com/posts/2011/5/14/javascript_pong/index.html)
+## Oppsett
 
-You can also play this game in the [Chrome Web Store](https://chrome.google.com/webstore/detail/omimkinlomnncbmnceacpkmlbfaapojj?hl=en-US)
+BEKKPong lar deg spille pong med eksterne NES-kontrollere. Da spillet må oppdateres for å kunne støtte nye kontrollere anbefales det å bruke [disse](https://www.kjell.com/se/sortiment/ljud-bild/tv-spel-gaming/nintendo-nes-snes/handkontroll-med-usb-anslutning-nes-p93804) fra Kjell & Co. 200 kroner/stk.
 
+1. Klon dette repoet.
+2. Åpne `index.html` i Chrome.
+3. Koble til kontrollere
+4. Det kan være nødvendig å bytte til en annen fane og tilbake for at kontrollere skal registreres.
+5. Du er nå klar til å kjøre BEKKPong!
 
-NOTES
-=====
+## Kontrollere
 
- * No support for mobile devices (need to handle touch events instead of key input)
+Spillerne kontrollerer hver sin pad med `opp` og `ned` på d-paden.
+
+Ved å trykke `start` på kontrolleren startes et nytt spill.
+
+Spillet går til en spiller når 5 poeng.
