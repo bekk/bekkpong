@@ -115,19 +115,19 @@ Pong = {
   },
 
   initialize: function(runner, cfg) {
-      this.cfg         = cfg;
-      this.runner      = runner;
-      this.width       = runner.width;
-      this.height      = runner.height;
-      this.playing     = false;
-      this.scores      = [0, 0];
-      this.menu        = Object.construct(Pong.Menu,   this);
-      this.court       = Object.construct(Pong.Court,  this);
-      this.leftPaddle  = Object.construct(Pong.Paddle, this);
-      this.rightPaddle = Object.construct(Pong.Paddle, this, true);
-      this.ball        = Object.construct(Pong.Ball,   this);
-      this.sounds      = Object.construct(Pong.Sounds, this);
-      this.runner.start();
+    this.cfg         = cfg;
+    this.runner      = runner;
+    this.width       = runner.width;
+    this.height      = runner.height;
+    this.playing     = false;
+    this.scores      = [0, 0];
+    this.menu        = Object.construct(Pong.Menu,   this);
+    this.court       = Object.construct(Pong.Court,  this);
+    this.leftPaddle  = Object.construct(Pong.Paddle, this);
+    this.rightPaddle = Object.construct(Pong.Paddle, this, true);
+    this.ball        = Object.construct(Pong.Ball,   this);
+    this.sounds      = Object.construct(Pong.Sounds, this);
+    this.runner.start();
   },
 
   startDemo:         function() { this.start(0, true);},
