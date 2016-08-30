@@ -4,18 +4,19 @@
 Pong = {
 
   Defaults: {
-    width:          640,   // logical canvas width (browser will scale to physical canvas size - which is controlled by @media css queries)
-    height:         480,   // logical canvas height (ditto)
-    wallWidth:      12,
-    paddleWidth:    12,
-    paddleHeight:   60,
-    paddleSpeed:    2,     // should be able to cross court vertically   in 2 seconds
-    ballSpeed:      4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
-    ballAccel:      8,     // ... but accelerate as time passes
-    ballRadius:     5,
-    endGameScore:   2,
-    useControllers: false,
-    sound:          true
+    width:            640,   // logical canvas width (browser will scale to physical canvas size - which is controlled by @media css queries)
+    height:           480,   // logical canvas height (ditto)
+    wallWidth:        12,
+    paddleWidth:      12,
+    paddleHeight:     60,
+    paddleSpeed:      2,     // should be able to cross court vertically   in 2 seconds
+    ballSpeed:        4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
+    ballAccel:        8,     // ... but accelerate as time passes
+    ballRadius:       5,
+    endGameScore:     1,
+    endGameScoreDemo: 9999,
+    useControllers:   false,
+    sound:            true
   },
 
   Colors: {
@@ -55,6 +56,13 @@ Pong = {
 
   //-----------------------------------------------------------------------------
   checkControllerStartGame: function (gp1, gp2) {
+    /*
+    * buttons[9] = start button
+    * buttons[8] = select button
+    * buttons[1] = a button
+    * buttons[2] = b button
+    * */
+
     if(gp1.buttons[9].pressed || gp2.buttons[9].pressed) {
       this.startDoublePlayer();
       this.Defaults.useControllers = true;
@@ -125,7 +133,6 @@ Pong = {
       this.rightPaddle = Object.construct(Pong.Paddle, this, true);
       this.ball        = Object.construct(Pong.Ball,   this);
       this.sounds      = Object.construct(Pong.Sounds, this);
-      this.demo        = false;
       this.runner.start();
     }.bind(this));
   },
@@ -147,6 +154,8 @@ Pong = {
       this.rightPaddle.setAuto(numPlayers < 2, this.level(1));
       this.ball.reset();
       this.runner.hideCursor();
+
+      this.endGameScore = isDemo ? this.Defaults.endGameScoreDemo : this.Defaults.endGameScore;
     }
   },
 
@@ -160,7 +169,7 @@ Pong = {
         document.getElementById("end-info").innerHTML = "Player " + (this.menu.winner +1) + " wins the game with " + diff;
         document.getElementById("end-info").innerHTML += diff > 1? " points" : " point";
       }
-      
+
       this.playing = false;
       this.leftPaddle.setAuto(false);
       this.rightPaddle.setAuto(false);
@@ -175,7 +184,7 @@ Pong = {
   goal: function(playerNo) {
     this.sounds.goal();
     this.scores[playerNo] += 1;
-    if (this.scores[playerNo] == this.Defaults.endGameScore) {
+    if (this.scores[playerNo] === this.endGameScore) {
       this.sounds.applause();
       this.menu.declareWinner(playerNo);
       this.stop();
@@ -326,7 +335,7 @@ Pong = {
     pong: function() { this.play('pong'); },
     wall: function() { this.play('wall'); },
     goal: function() { this.play('goal'); },
-    applause: function() { this.play('applause'); },
+    applause: function() { this.play('applause'); }
 
   },
 
