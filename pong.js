@@ -13,8 +13,8 @@ Pong = {
     ballSpeed:        4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
     ballAccel:        8,     // ... but accelerate as time passes
     ballRadius:       5,
-    endGameScore:     1,
-    endGameScoreDemo: 9999,
+    endGameScore:     5,
+    endGameScoreDemo: 999,
     useControllers:   false,
     sound:            true
   },
