@@ -162,9 +162,9 @@ Pong = {
     }
   },
 
-  stop: function() {
+  stop: function(aborted) {
     if (this.playing) {
-      if (this.isDemo) {
+      if (this.isDemo || aborted) {
         document.getElementById("splash-begin").classList = "splash";
       } else {
         document.getElementById("splash-end").classList.remove("hidden");
@@ -247,7 +247,7 @@ Pong = {
         this.startDoublePlayer();
         break;
       case Game.KEY.ESC:
-        this.stop();
+        this.stop(true);
         break;
       case Game.KEY.Q:
         if (!this.leftPaddle.auto)
