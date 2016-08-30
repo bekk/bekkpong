@@ -54,18 +54,6 @@ if (!Object.extend) {
   };
 }
 
-/* NOT READY FOR PRIME TIME
-if (!window.requestAnimationFrame) {// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-  window.requestAnimationFrame = window.webkitRequestAnimationFrame || 
-                                 window.mozRequestAnimationFrame    || 
-                                 window.oRequestAnimationFrame      || 
-                                 window.msRequestAnimationFrame     || 
-                                 function(callback, element) {
-                                   window.setTimeout(callback, 1000 / 60);
-                                 }
-}
-*/
-
 //=============================================================================
 // GAME
 //=============================================================================
@@ -85,7 +73,7 @@ Game = {
       return Object.construct(Game.Runner, id, game, cfg).game; // return the game instance, not the runner (caller can always get at the runner via game.runner)
   },
 
-  ua: function() { // should avoid user agent sniffing... but sometimes you just gotta do what you gotta do
+  ua: function() {
     var ua  = navigator.userAgent.toLowerCase();
     var key =        ((ua.indexOf("opera")   > -1) ? "opera"   : null);
         key = key || ((ua.indexOf("firefox") > -1) ? "firefox" : null);
@@ -113,8 +101,10 @@ Game = {
     }
   }(),
 
-  addEvent:    function(obj, type, fn) { obj.addEventListener(type, fn, false);    },
-  removeEvent: function(obj, type, fn) { obj.removeEventListener(type, fn, false); },
+  addEvent:    function(obj, type, fn) {
+    if(obj)
+      obj.addEventListener(type, fn, false);
+  },
 
   ready: function(fn) {
     if (Game.compatible())
@@ -128,7 +118,7 @@ Game = {
   createAudio: function(src) {
     try {
       var a = new Audio(src);
-      a.volume = 0.1; // lets be real quiet please
+      a.volume = 0.1;
       return a;
     } catch (e) {
       return null;
@@ -170,8 +160,6 @@ Game = {
     TILDA:    192
   },
 
-  //-----------------------------------------------------------------------------
-
   Runner: {
 
     initialize: function(id, game, cfg) {
@@ -192,16 +180,12 @@ Game = {
       this.addEvents();
       this.resetStats();
 
-      this.game = Object.construct(game, this, this.cfg); // finally construct the game object itself
+      this.game = Object.construct(game, this, this.cfg);
     },
 
     start: function() { // game instance should call runner.start() when its finished initializing and is ready to start the game loop
       this.lastFrame = Game.timestamp();
-      this.timer     = setInterval(this.loop.bind(this), this.interval);
-    },
-
-    stop: function() {
-      clearInterval(this.timer);
+      setInterval(this.loop.bind(this), this.interval);
     },
 
     loop: function() {
@@ -262,23 +246,6 @@ Game = {
     onkeyup:   function(ev) { if (this.game.onkeyup)   this.game.onkeyup(ev.keyCode);   },
 
     hideCursor: function() { this.canvas.style.cursor = 'none'; },
-    showCursor: function() { this.canvas.style.cursor = 'auto'; },
-
-    alert: function(msg) {
-      this.stop(); // alert blocks thread, so need to stop game loop in order to avoid sending huge dt values to next update
-      result = window.alert(msg);
-      this.start();
-      return result;
-    },
-
-    confirm: function(msg) {
-      this.stop(); // alert blocks thread, so need to stop game loop in order to avoid sending huge dt values to next update
-      result = window.confirm(msg);
-      this.start();
-      return result;
-    }
-
-    //-------------------------------------------------------------------------
-
-  } // Game.Runner
-} // Game
+    showCursor: function() { this.canvas.style.cursor = 'auto'; }
+  }
+}
