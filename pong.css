@@ -61,17 +61,6 @@ body {
     display: none;
 }
 
-.applause {
-    background-image: url("images/two.gif");
-    background-repeat: repeat-x;
-    width: 1200px;
-    height: 100%;
-    position: absolute;
-    left: -170px;
-    bottom: -700px;
-}
-
-
 
 @media screen and (min-width: 0px) {
   #game    { display: block; width: 800px; height: 600px; margin: 0 auto; }
@@ -85,6 +74,7 @@ body {
   .splash span {font-size: 40px; line-height: 600px;}
 
 }
+
 @media screen and (min-width: 1600px) {
   #game    { width: 1024px; height: 768px; }
   .splash  { width: 1024px; height: 768px; left: calc((100% - 1024px) / 2); } 
