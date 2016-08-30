@@ -15,6 +15,7 @@ Pong = {
     ballRadius:       5,
     endGameScore:     5,
     endGameScoreDemo: 999,
+    speedFactor:      2,
     useControllers:   false,
     sound:            true
   },
@@ -81,7 +82,7 @@ Pong = {
           // Move down
           paddle.stopMovingUp();
             if (gp.buttons[1].pressed) {
-              paddle.moveDown(2);
+              paddle.moveDown(this.Defaults.speedFactor);
             } else {
               paddle.moveDown();
             }
@@ -90,7 +91,7 @@ Pong = {
           // Move up
           paddle.stopMovingDown();
           if (gp.buttons[1].pressed) {
-            paddle.moveUp(2);
+            paddle.moveUp(this.Defaults.speedFactor);
           } else {
             paddle.moveUp();
           }
