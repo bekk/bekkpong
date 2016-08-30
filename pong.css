@@ -113,6 +113,6 @@ body {
   .splash  { width: 1024px; height: 768px; left: calc((100% - 1024px) / 2); } 
   .splash span {font-size: 60px; line-height: 770px;}
   .score-container { width: 1024px; }
-  #score1 { right: 350px; }
-  #score2 { left: 350px; }
+  #score1 { right: 550px; }
+  #score2 { left: 550px; }
 }
