@@ -216,8 +216,6 @@ Pong = {
     this.rightPaddle.draw(ctx);
     if (this.playing)
       this.ball.draw(ctx);
-    else
-      this.menu.draw(ctx);
   },
 
   onkeydown: function(keyCode) {
@@ -277,16 +275,8 @@ Pong = {
 
   Menu: {
 
-    initialize: function(pong) {
-      //Method no longer needed, but required to exist
-    },
-
     declareWinner: function(playerNo) {
       this.winner = playerNo;
-    },
-
-    draw: function(ctx) {
-      //Method no longer needed, but required to exist
     }
 
   },
