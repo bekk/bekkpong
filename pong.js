@@ -265,7 +265,6 @@ Pong = {
         if (!this.rightPaddle.auto)
           this.rightPaddle.moveDown();
         break;
-      default: console.log(keyCode);
     }
   },
 
