@@ -15,6 +15,7 @@ Pong = {
     ballRadius:       5,
     endGameScore:     5,
     endGameScoreDemo: 999,
+    speedFactor:      2,
     useControllers:   false,
     sound:            true
   },
@@ -65,9 +66,9 @@ Pong = {
     } else if(gp1.buttons[8].pressed) {
       this.startSinglePlayer();
       this.Defaults.useControllers = true;
-    } else if(gp1.buttons[1].pressed) {
-      this.startDemo();
     } else if(gp1.buttons[2].pressed) {
+      this.startDemo();
+    } else if(gp1.buttons[1].pressed) {
       if (this.isDemo) {
         this.stop();
       }
@@ -80,12 +81,21 @@ Pong = {
         case 1:
           // Move down
           paddle.stopMovingUp();
-          paddle.moveDown();
+            if (gp.buttons[1].pressed) {
+              paddle.moveDown(this.Defaults.speedFactor);
+            } else {
+              paddle.moveDown();
+            }
           break;
         case -1:
           // Move up
           paddle.stopMovingDown();
-          paddle.moveUp();
+          if (gp.buttons[1].pressed) {
+            paddle.moveUp(this.Defaults.speedFactor);
+          } else {
+            paddle.moveUp();
+          }
+
           break;
         default:
           // Stop moving
@@ -517,8 +527,8 @@ Pong = {
       }
     },
 
-    moveUp:         function() { this.up   = 1; },
-    moveDown:       function() { this.down = 1; },
+    moveUp:         function(speed = 1) { this.up   = speed; },
+    moveDown:       function(speed = 1) { this.down = speed; },
     stopMovingUp:   function() { this.up   = 0; },
     stopMovingDown: function() { this.down = 0; }
 
