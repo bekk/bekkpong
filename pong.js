@@ -30,9 +30,6 @@ Pong = {
     predictionExact: 'red'
   },
 
-  Images: [
-  ],
-
   Levels: [
     {aiReaction: 0.2, aiError:  40}, // 0:  ai is losing by 8
     {aiReaction: 0.3, aiError:  50}, // 1:  ai is losing by 7
@@ -118,22 +115,19 @@ Pong = {
   },
 
   initialize: function(runner, cfg) {
-    Game.loadImages(Pong.Images, function(images) {
-      this.cfg         = cfg;
-      this.runner      = runner;
-      this.width       = runner.width;
-      this.height      = runner.height;
-      this.images      = images;
-      this.playing     = false;
-      this.scores      = [0, 0];
-      this.menu        = Object.construct(Pong.Menu,   this);
-      this.court       = Object.construct(Pong.Court,  this);
-      this.leftPaddle  = Object.construct(Pong.Paddle, this);
-      this.rightPaddle = Object.construct(Pong.Paddle, this, true);
-      this.ball        = Object.construct(Pong.Ball,   this);
-      this.sounds      = Object.construct(Pong.Sounds, this);
-      this.runner.start();
-    }.bind(this));
+    this.cfg         = cfg;
+    this.runner      = runner;
+    this.width       = runner.width;
+    this.height      = runner.height;
+    this.playing     = false;
+    this.scores      = [0, 0];
+    this.menu        = Object.construct(Pong.Menu,   this);
+    this.court       = Object.construct(Pong.Court,  this);
+    this.leftPaddle  = Object.construct(Pong.Paddle, this);
+    this.rightPaddle = Object.construct(Pong.Paddle, this, true);
+    this.ball        = Object.construct(Pong.Ball,   this);
+    this.sounds      = Object.construct(Pong.Sounds, this);
+    this.runner.start();
   },
 
   startDemo:         function() { this.start(0, true);},
