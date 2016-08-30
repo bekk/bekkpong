@@ -166,8 +166,7 @@ Pong = {
       } else {
         document.getElementById("splash-end").classList.remove("hidden");
         var diff = this.scores[this.menu.winner] - this.scores[1 - this.menu.winner];
-        document.getElementById("end-info").innerHTML = "Player " + (this.menu.winner +1) + " wins the game with " + diff;
-        document.getElementById("end-info").innerHTML += diff > 1? " points" : " point";
+        document.getElementById("end-info").innerHTML = "Spiller  " + (this.menu.winner +1) + " vant med " + diff + " poeng";
       }
 
       this.playing = false;
@@ -226,8 +225,6 @@ Pong = {
     this.rightPaddle.draw(ctx);
     if (this.playing)
       this.ball.draw(ctx);
-    else
-      this.menu.draw(ctx);
   },
 
   onkeydown: function(keyCode) {
@@ -287,21 +284,8 @@ Pong = {
 
   Menu: {
 
-    initialize: function(pong) {
-      var winner = pong.images["images/winner.png"];
-      this.winner1 = { image: winner, x: (pong.width/2) - winner.width - pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
-      this.winner2 = { image: winner, x: (pong.width/2)                + pong.cfg.wallWidth, y: 6 * pong.cfg.wallWidth };
-    },
-
     declareWinner: function(playerNo) {
       this.winner = playerNo;
-    },
-
-    draw: function(ctx) {
-      if (this.winner == 0)
-        ctx.drawImage(this.winner1.image, this.winner1.x, this.winner1.y);
-      else if (this.winner == 1)
-        ctx.drawImage(this.winner2.image, this.winner2.x, this.winner2.y);
     }
 
   },
