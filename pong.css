@@ -49,7 +49,6 @@ body {
     z-index: 100;
     position: absolute;
     top:130px;
-    left: calc((100% - 800px) / 2);
 }
 
 .splash span{
@@ -67,12 +66,15 @@ body {
 
 @media screen and (min-width: 0px) {
   #game    { display: block; width: 800px; height: 600px; margin: 0 auto; }
+  .splash  { width: 800px; height: 600px; left: calc((100% - 800px) / 2); }
 }
 
 @media screen and (min-width: 1200px) {
   #game    { width: 800px; height: 600px; }
+  .splash  { width: 800px; height: 600px; left: calc((100% - 800px) / 2); }
 }
 
 @media screen and (min-width: 1600px) {
   #game    { width: 1024px; height: 768px; }
+  .splash  { width: 1024px; height: 768px; left: calc((100% - 1024px) / 2); } 
 }
