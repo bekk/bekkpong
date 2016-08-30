@@ -1,17 +1,17 @@
-# BEKKPong
+# BEKK Pong
 
-BEKKPong er et spill som kan brukes til rekrutteringsprosjekter og lignende. 
+BEKK Pong er et spill som kan brukes til rekrutteringsprosjekter og lignende. 
 
-![](https://cloud.githubusercontent.com/assets/1413264/18085783/eb1aea3e-6eac-11e6-8fc7-26746c6d97f0.png)
+![](https://cloud.githubusercontent.com/assets/1413264/18090646/fdcc0050-6ec5-11e6-87f1-23884389ebe9.png)
 
 ## Oppsett
 
-BEKKPong lar deg spille pong med eksterne NES-kontrollere. Da spillet må oppdateres for å kunne støtte nye kontrollere anbefales det å bruke [disse](https://www.kjell.com/se/sortiment/ljud-bild/tv-spel-gaming/nintendo-nes-snes/handkontroll-med-usb-anslutning-nes-p93804) fra Kjell & Co. 200 kroner/stk.
+BEKK Pong lar deg spille pong med eksterne NES-kontrollere. Da spillet må oppdateres for å kunne støtte nye kontrollere anbefales det å bruke [disse](https://www.kjell.com/se/sortiment/ljud-bild/tv-spel-gaming/nintendo-nes-snes/handkontroll-med-usb-anslutning-nes-p93804) fra Kjell & Co. 200 kroner/stk.
 
 1. Klon dette repoet.
 2. Åpne `index.html` i Chrome.
 3. Koble til kontrollere
-4. Du er nå klar til å kjøre BEKKPong!
+4. Du er nå klar til å kjøre BEKK Pong!
 
 Merk: Den første kontrolleren som kobles til vil bli "Hovedkontrolleren".
 
@@ -24,14 +24,18 @@ Spillerne kontrollerer hver sin pad med `opp` og `ned` på d-paden.
 Ved å trykke `start` på en av kontrollerene starter et nytt spill.
 Trykker man `select` på kontrolleren som er "Hovedkontroller", starter man et enspiller-spill. (Å trykke på `select` på den andre kontrolleren har ingen effekt.)
 
-### Demo
-Trykk `A` på "Hovedkontrolleren" for å starte en demo hvor spillet spiller mot seg selv. Denne går til en av spillerene har `9999` poeng.
+Dersom man holder nede `A` mens man styrer `opp` eller `ned` får man Superfart™!
 
-Trykk `B` på "Hovedkontrolleren" for å skru av demo. Det er også mulig å avbryte demoen ved å trykke `esc` på tastaturet.
+### Demo
+Trykk `B` på "Hovedkontrolleren" for å starte en demo hvor spillet spiller mot seg selv. Denne går til en av spillerene har `9999` poeng.
+
+Trykk `A` på "Hovedkontrolleren" for å skru av demo. Det er også mulig å avbryte demoen ved å trykke `esc` på tastaturet.
 
 ### Bruk av tastatur
  
 Dersom man ønsker å spille uten kontrollere kan man trykke `1` for en spiller, og `2` for to spillere. Spiller 1 styrer med `Q` og `A`, spiller 2 styrer med `P` og `L`.
+
+Det er ikke mulig å få Superfart™ hvis man spiller med tastaturet.
 
 Det er alltid mulig å avbryte et spill ved å trykke `esc`.
 
