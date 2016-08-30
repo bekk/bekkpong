@@ -61,6 +61,16 @@ body {
     display: none;
 }
 
+.applause {
+    background-image: url("images/two.gif");
+    background-repeat: repeat-x;
+    width: 1650px;
+    height: 100%;
+    position: absolute;
+    left: -320px;
+    bottom: -720px;
+}
+
 
 @media screen and (min-width: 0px) {
   #game    { display: block; width: 800px; height: 600px; margin: 0 auto; }
