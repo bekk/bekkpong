@@ -14,7 +14,7 @@ Pong = {
     ballAccel:        8,     // ... but accelerate as time passes
     ballRadius:       5,
     endGameScore:     1,
-    endGameScoreDemo: 9999,
+    endGameScoreDemo: 999,
     useControllers:   false,
     sound:            true
   },
