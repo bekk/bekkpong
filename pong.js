@@ -31,7 +31,6 @@ Pong = {
   },
 
   Images: [
-    "images/winner.png"
   ],
 
   Levels: [
