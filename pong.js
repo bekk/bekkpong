@@ -30,9 +30,6 @@ Pong = {
     predictionExact: 'red'
   },
 
-  Images: [
-  ],
-
   Levels: [
     {aiReaction: 0.2, aiError:  40}, // 0:  ai is losing by 8
     {aiReaction: 0.3, aiError:  50}, // 1:  ai is losing by 7
@@ -117,23 +114,28 @@ Pong = {
     this.checkControllerMovement(gp2, this.rightPaddle);
   },
 
+  updateTime: function () {
+    var timeDifference = parseInt((new Date() - this.startTime)/1000, 10);
+    var seconds = ('0' + timeDifference % 60).slice(-2);
+    var minutes = ('0' + parseInt(timeDifference/60)).slice(-2);
+
+    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+  },
+
   initialize: function(runner, cfg) {
-    Game.loadImages(Pong.Images, function(images) {
-      this.cfg         = cfg;
-      this.runner      = runner;
-      this.width       = runner.width;
-      this.height      = runner.height;
-      this.images      = images;
-      this.playing     = false;
-      this.scores      = [0, 0];
-      this.menu        = Object.construct(Pong.Menu,   this);
-      this.court       = Object.construct(Pong.Court,  this);
-      this.leftPaddle  = Object.construct(Pong.Paddle, this);
-      this.rightPaddle = Object.construct(Pong.Paddle, this, true);
-      this.ball        = Object.construct(Pong.Ball,   this);
-      this.sounds      = Object.construct(Pong.Sounds, this);
-      this.runner.start();
-    }.bind(this));
+    this.cfg         = cfg;
+    this.runner      = runner;
+    this.width       = runner.width;
+    this.height      = runner.height;
+    this.playing     = false;
+    this.scores      = [0, 0];
+    this.menu        = Object.construct(Pong.Menu,   this);
+    this.court       = Object.construct(Pong.Court,  this);
+    this.leftPaddle  = Object.construct(Pong.Paddle, this);
+    this.rightPaddle = Object.construct(Pong.Paddle, this, true);
+    this.ball        = Object.construct(Pong.Ball,   this);
+    this.sounds      = Object.construct(Pong.Sounds, this);
+    this.runner.start();
   },
 
   startDemo:         function() { this.start(0, true);},
@@ -145,6 +147,8 @@ Pong = {
       //remove splash screen:
       document.getElementById("splash-begin").classList = "splash hidden";
       document.getElementById("splash-end").classList = "splash hidden";
+
+      this.startTime = new Date();
 
       this.isDemo = isDemo;
       this.scores = [0, 0];
@@ -158,9 +162,9 @@ Pong = {
     }
   },
 
-  stop: function() {
+  stop: function(aborted) {
     if (this.playing) {
-      if (this.isDemo) {
+      if (this.isDemo || aborted) {
         document.getElementById("splash-begin").classList = "splash";
       } else {
         document.getElementById("splash-end").classList.remove("hidden");
@@ -198,11 +202,13 @@ Pong = {
     if (navigator.getGamepads()[0]) {
       this.checkControllerButtonPressed();
     }
+
     this.leftPaddle.update(dt, this.ball);
     this.rightPaddle.update(dt, this.ball);
     if (this.playing) {
       var dx = this.ball.dx;
       var dy = this.ball.dy;
+      this.updateTime();
       this.ball.update(dt, this.leftPaddle, this.rightPaddle);
       if (this.ball.dx < 0 && dx > 0)
         this.sounds.ping();
@@ -241,7 +247,7 @@ Pong = {
         this.startDoublePlayer();
         break;
       case Game.KEY.ESC:
-        this.stop();
+        this.stop(true);
         break;
       case Game.KEY.Q:
         if (!this.leftPaddle.auto)
