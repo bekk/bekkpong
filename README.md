@@ -2,6 +2,8 @@
 
 BEKKPong er et spill som kan brukes til rekrutteringsprosjekter og lignende. 
 
+![](https://cloud.githubusercontent.com/assets/1413264/18085783/eb1aea3e-6eac-11e6-8fc7-26746c6d97f0.png)
+
 ## Oppsett
 
 BEKKPong lar deg spille pong med eksterne NES-kontrollere. Da spillet må oppdateres for å kunne støtte nye kontrollere anbefales det å bruke [disse](https://www.kjell.com/se/sortiment/ljud-bild/tv-spel-gaming/nintendo-nes-snes/handkontroll-med-usb-anslutning-nes-p93804) fra Kjell & Co. 200 kroner/stk.
