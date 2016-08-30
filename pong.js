@@ -118,6 +118,14 @@ Pong = {
     this.checkControllerMovement(gp2, this.rightPaddle);
   },
 
+  updateTime: function () {
+    var timeDifference = parseInt((new Date() - this.startTime)/1000, 10);
+    var seconds = ('0' + timeDifference % 60).slice(-2);
+    var minutes = ('0' + parseInt(timeDifference/60)).slice(-2);
+
+    document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+  },
+
   initialize: function(runner, cfg) {
     Game.loadImages(Pong.Images, function(images) {
       this.cfg         = cfg;
@@ -146,6 +154,8 @@ Pong = {
       //remove splash screen:
       document.getElementById("splash-begin").classList = "splash hidden";
       document.getElementById("splash-end").classList = "splash hidden";
+
+      this.startTime = new Date();
 
       this.isDemo = isDemo;
       this.scores = [0, 0];
@@ -200,11 +210,13 @@ Pong = {
     if (navigator.getGamepads()[0]) {
       this.checkControllerButtonPressed();
     }
+
     this.leftPaddle.update(dt, this.ball);
     this.rightPaddle.update(dt, this.ball);
     if (this.playing) {
       var dx = this.ball.dx;
       var dy = this.ball.dy;
+      this.updateTime();
       this.ball.update(dt, this.leftPaddle, this.rightPaddle);
       if (this.ball.dx < 0 && dx > 0)
         this.sounds.ping();
