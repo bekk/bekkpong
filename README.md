@@ -17,12 +17,12 @@ Merk: Den første kontrolleren som kobles til vil bli "Hovedkontrolleren".
 Spillerne kontrollerer hver sin pad med `opp` og `ned` på d-paden.
 
 Ved å trykke `start` på en av kontrollerene starter et nytt spill.
-Trykker man `select` på kontrolleren som er "Kontroller 1", starter man et enspiller-spill. (Å trykke på `select` på den andre kontrolleren har ingen effekt.)
+Trykker man `select` på kontrolleren som er "Hovedkontroller", starter man et enspiller-spill. (Å trykke på `select` på den andre kontrolleren har ingen effekt.)
 
 ### Demo
-Trykk `A` på hovedkontrolleren for å starte en demo hvor spillet spiller mot seg selv. Denne går til en av spillerene har `9999` poeng.
+Trykk `A` på "Hovedkontrolleren" for å starte en demo hvor spillet spiller mot seg selv. Denne går til en av spillerene har `9999` poeng.
 
-Trykk `B` på hovedkontrolleren for å skru av demo.
+Trykk `B` på "Hovedkontrolleren" for å skru av demo. Det er også mulig å avbryte demoen ved å trykke `esc` på tastaturet.
 
 ### Bruk av tastatur
  
