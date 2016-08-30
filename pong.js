@@ -13,7 +13,7 @@ Pong = {
     ballSpeed:        4,     // should be able to cross court horizontally in 4 seconds, at starting speed ...
     ballAccel:        8,     // ... but accelerate as time passes
     ballRadius:       5,
-    endGameScore:     2,
+    endGameScore:     1,
     endGameScoreDemo: 9999,
     useControllers:   false,
     sound:            true
@@ -142,8 +142,7 @@ Pong = {
   startDoublePlayer: function() { this.start(2, false);},
 
   start: function(numPlayers, isDemo) {
-    if (this.playing) {
-    } else {
+    if (!this.playing) {
       //remove splash screen:
       document.getElementById("splash-begin").classList = "splash hidden";
       document.getElementById("splash-end").classList = "splash hidden";
@@ -185,7 +184,7 @@ Pong = {
   goal: function(playerNo) {
     this.sounds.goal();
     this.scores[playerNo] += 1;
-    if (this.scores[playerNo] == this.endGameScore) {
+    if (this.scores[playerNo] === this.endGameScore) {
       this.sounds.applause();
       this.menu.declareWinner(playerNo);
       this.stop();
