@@ -13,6 +13,9 @@ BEKKPong lar deg spille pong med eksterne NES-kontrollere. Da spillet må oppdat
 
 Merk: Den første kontrolleren som kobles til vil bli "Hovedkontrolleren".
 
+## Spillets gang
+En spiller får poeng når motstanderen ikke klarer å sende ballen tilbake. Spillet går til en spiller når 5 poeng.
+
 ## Kontrollere
 Spillerne kontrollerer hver sin pad med `opp` og `ned` på d-paden.
 
@@ -28,7 +31,7 @@ Trykk `B` på "Hovedkontrolleren" for å skru av demo. Det er også mulig å avb
  
 Dersom man ønsker å spille uten kontrollere kan man trykke `1` for en spiller, og `2` for to spillere. Spiller 1 styrer med `Q` og `A`, spiller 2 styrer med `P` og `L`.
 
-Spillet går til en spiller når 5 poeng.
+Det er alltid mulig å avbryte et spill ved å trykke `esc`.
 
 ## Highscore
 
