@@ -27,6 +27,8 @@ body {
 .logo {
     margin: 0 auto;
     font-size: 20pt;
+    height: 85px;
+    width: 800px;
     display: inline-block;
     overflow: hidden;
     position: relative;
@@ -48,7 +50,7 @@ body {
     width: 800px;
     z-index: 100;
     position: absolute;
-    top:165px;
+    top:131px;
 }
 
 .splash span{
@@ -61,14 +63,11 @@ body {
     display: none;
 }
 
-.applause {
-    background-image: url("images/two.gif");
-    background-repeat: repeat-x;
-    width: 1650px;
-    height: 100%;
+.timer-container {
     position: absolute;
-    left: -320px;
-    bottom: -720px;
+    right: 10px;
+    bottom: 8px;
+    font-size: 20pt;
 }
 
 .score-container {
@@ -90,7 +89,6 @@ body {
 #score2 {
     left: 433px;
 }
-
 
 @media screen and (min-width: 0px) {
   #game    { display: block; width: 800px; height: 600px; margin: 0 auto; }
