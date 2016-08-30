@@ -70,20 +70,49 @@ body {
     font-size: 20pt;
 }
 
+.score-container {
+    position: relative;
+    width: 800px;
+    margin: auto;
+}
+
+.score {
+    position: absolute;
+    font-size: 60pt;
+    top: 10px;
+}
+
+#score1 {
+    right: 440px;
+}
+
+#score2 {
+    left: 440px;
+}
+
 @media screen and (min-width: 0px) {
   #game    { display: block; width: 800px; height: 600px; margin: 0 auto; }
   .splash  { width: 800px; height: 600px; left: calc((100% - 800px) / 2); }
   .splash span {font-size: 40px; line-height: 600px;}
+  .score-container { width: 800px; }
+  #score1 { right: 440px; }
+  #score2 { left: 440px; }
 }
 
 @media screen and (min-width: 1200px) {
   #game    { width: 800px; height: 600px; }
   .splash  { width: 800px; height: 600px; left: calc((100% - 800px) / 2); }
   .splash span {font-size: 40px; line-height: 600px;}
+  .score-container { width: 800px; }
+  #score1 { right: 440px; }
+  #score2 { left: 440px; }
 }
 
 @media screen and (min-width: 1600px) {
   #game    { width: 1024px; height: 768px; }
   .splash  { width: 1024px; height: 768px; left: calc((100% - 1024px) / 2); } 
   .splash span {font-size: 60px; line-height: 770px;}
+  .score-container { width: 1024px; }
+  #score1 { right: 350px; }
+  #score2 { left: 350px; }
 }

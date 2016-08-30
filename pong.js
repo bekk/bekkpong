@@ -180,7 +180,10 @@ Pong = {
   },
 
   level: function(playerNo) {
-    return 8 + (this.scores[playerNo] - this.scores[playerNo ? 0 : 1]);
+    var returnLevel = 8 + (this.scores[playerNo] - this.scores[playerNo ? 0 : 1]);
+    returnLevel = returnLevel < 0  ? 0 : returnLevel;
+    returnLevel = returnLevel > 16 ? 16 : returnLevel;
+    return returnLevel;
   },
 
   goal: function(playerNo) {
@@ -359,42 +362,13 @@ Pong = {
       ctx.fillStyle = Pong.Colors.walls;
       for(var n = 0 ; n < this.walls.length ; n++)
         ctx.fillRect(this.walls[n].x, this.walls[n].y, this.walls[n].width, this.walls[n].height);
-      this.drawDigit(ctx, scorePlayer1, this.score1.x, this.score1.y, this.score1.w, this.score1.h);
-      this.drawDigit(ctx, scorePlayer2, this.score2.x, this.score2.y, this.score2.w, this.score2.h);
+      this.drawDigit(1, scorePlayer1);
+      this.drawDigit(2, scorePlayer2);
     },
 
-    drawDigit: function(ctx, n, x, y, w, h) {
-      ctx.fillStyle = Pong.Colors.score;
-      var dw = dh = this.ww*4/5;
-      var blocks = Pong.Court.DIGITS[n];
-      if (blocks[0])
-        ctx.fillRect(x, y, w, dh);
-      if (blocks[1])
-        ctx.fillRect(x, y, dw, h/2);
-      if (blocks[2])
-        ctx.fillRect(x+w-dw, y, dw, h/2);
-      if (blocks[3])
-        ctx.fillRect(x, y + h/2 - dh/2, w, dh);
-      if (blocks[4])
-        ctx.fillRect(x, y + h/2, dw, h/2);
-      if (blocks[5])
-        ctx.fillRect(x+w-dw, y + h/2, dw, h/2);
-      if (blocks[6])
-        ctx.fillRect(x, y+h-dh, w, dh);
-    },
-
-    DIGITS: [
-      [1, 1, 1, 0, 1, 1, 1], // 0
-      [0, 0, 1, 0, 0, 1, 0], // 1
-      [1, 0, 1, 1, 1, 0, 1], // 2
-      [1, 0, 1, 1, 0, 1, 1], // 3
-      [0, 1, 1, 1, 0, 1, 0], // 4
-      [1, 1, 0, 1, 0, 1, 1], // 5
-      [1, 1, 0, 1, 1, 1, 1], // 6
-      [1, 0, 1, 0, 0, 1, 0], // 7
-      [1, 1, 1, 1, 1, 1, 1], // 8
-      [1, 1, 1, 1, 0, 1, 0]  // 9
-    ]
+    drawDigit: function(playerNumber, score) {
+      document.getElementById("score" + playerNumber).innerHTML = score;
+    }
 
   },
 
