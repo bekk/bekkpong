@@ -2,6 +2,8 @@
 
 BEKK Pong er et spill som kan brukes til rekrutteringsprosjekter og lignende. 
 
+Live versjon finner du på [pong.bekk.no](pong.bekk.no).
+
 ![](https://cloud.githubusercontent.com/assets/1413264/18090646/fdcc0050-6ec5-11e6-87f1-23884389ebe9.png)
 
 ## Oppsett
@@ -43,7 +45,9 @@ Det er alltid mulig å avbryte et spill ved å trykke `esc`.
 
 For å holde det enkelt registreres vinnerne i et Google Form.
 
-En mal for skjema finner du [her](https://docs.google.com/forms/d/1395thOBXGILizqrWOAiFp-iLi_5sl-XYPkKapNl0vjg/edit?usp=sharing). Velg `Make a copy...` i menyen, og lagre en kopi på din egen Google Drive. 
+En mal for skjema finner du [her](https://docs.google.com/forms/d/1395thOBXGILizqrWOAiFp-iLi_5sl-XYPkKapNl0vjg/edit?usp=sharing). Velg `Make a copy...` i menyen, og lagre en kopi på din egen Google Drive.
+
+**Dette er viktig, da du ikke har tilgang til å lese resultatene i malen, så bruker du den har du samlet inn mye informasjon til ingen nytte**
 
 ![](https://cloud.githubusercontent.com/assets/1413264/18079142/708e206e-6e8f-11e6-886a-6f260d4f7758.png)
 
@@ -59,6 +63,6 @@ Dersom kun en kontroller er koblet til, og man trykker `start` (noe som indikere
 
 ### Skjermstørrelse
 
-Spillet støtter for tiden ikke oppløsning under `900x750`.
+Spillet støtter ikke oppløsning under `900x750`.
 
 Spillet er ikke testet på oppløsning over `1680x900`.
