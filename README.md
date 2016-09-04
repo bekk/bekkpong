@@ -2,7 +2,7 @@
 
 BEKK Pong er et spill som kan brukes til rekrutteringsprosjekter og lignende. 
 
-Live versjon finner du på [pong.bekk.no](pong.bekk.no).
+Live versjon finner du på [pong.bekk.no](http://pong.bekk.no).
 
 ![](https://cloud.githubusercontent.com/assets/1413264/18090646/fdcc0050-6ec5-11e6-87f1-23884389ebe9.png)
 
